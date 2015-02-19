@@ -1,13 +1,17 @@
-/// <reference path="../scripts/typings/angularjs/angular.d.ts" />
-// Install the angularjs.TypeScript.DefinitelyTyped NuGet package to resolve the reference paths,
-// then adjust the path value to be relative to this file
-
 // Create the module and define its dependencies.
-var app = angular.module('app', [
-    'ngResource',
-    'ngAnimate',
-    'ngRoute'
+var app = angular.module('blog', [
+    'ui.router'
 ]);
+
+app.config(function ($stateProvider, $urlRouterProvider) {
+    var viewBaseUrl = "/app/views/";
+    $urlRouterProvider.otherwise('/home');
+
+    $stateProvider.state('home', {
+        url: '/home',
+        templateUrl: viewBaseUrl+'home.html'
+    }).state('about', {});
+});
 
 // Execute bootstrapping code and any dependencies.
 app.run([

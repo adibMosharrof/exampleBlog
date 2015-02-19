@@ -24,7 +24,7 @@ var PostCtrl = (function () {
 })();
 
 // Update the app1 variable name to be that of your module variable
-app1.controller(PostCtrl.controllerId, [
+app.controller(PostCtrl.controllerId, [
     '$scope', '$http', '$resource', function ($scope, $http, $resource) {
         return new PostCtrl($scope, $http, $resource);
     }
