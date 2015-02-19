@@ -31,20 +31,14 @@ namespace Blog.Api.Controllers
             return SingleResult.Create(result);
         }
 
-        public async Task<IHttpActionResult> Post(Post post)
+        public IHttpActionResult Post(Post post)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            await postsRepository.Post(post);
+            postsRepository.Post(post);
             return Created(post);
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            //db.Dispose();
-            base.Dispose(disposing);
         }
 	}
 }

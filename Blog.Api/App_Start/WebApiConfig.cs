@@ -7,6 +7,8 @@ using System.Web.OData.Extensions;
 
 namespace Blog.Api
 {
+    using Blog.Models;
+
     public static class WebApiConfig
     {
         public static void Register(HttpConfiguration config)
