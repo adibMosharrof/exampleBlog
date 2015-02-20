@@ -19,7 +19,8 @@
   <ItemGroup>
     <Content Include="app.css" />
     <Content Include="app\app.js" />
-    <Content Include="app\controller\PostCtrl.js" />
+    <Content Include="app\controllers\PostCtrl.js" />
+    <Content Include="app\services\PostService.js" />
     <Content Include="app\views\home.html" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />

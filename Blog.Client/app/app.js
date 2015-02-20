@@ -1,6 +1,7 @@
 // Create the module and define its dependencies.
 var app = angular.module('blog', [
-    'ui.router'
+    'ui.router',
+    'restangular'
 ]);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
@@ -9,7 +10,8 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 
     $stateProvider.state('home', {
         url: '/home',
-        templateUrl: viewBaseUrl+'home.html'
+        templateUrl: viewBaseUrl + 'home.html',
+        controller : 'PostCtrl'
     }).state('about', {});
 });
 
@@ -17,4 +19,3 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 app.run([
     '$q', '$rootScope', function ($q, $rootScope) {
     }]);
-//# sourceMappingURL=app.js.map
