@@ -188,17 +188,17 @@
     <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Blog\Blog.Models.csproj">
-      <Project>{4e7207c8-4e3e-4302-a87e-3f266fcf7450}</Project>
-      <Name>Blog.Models</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Blog.Models\Blog.Models.csproj">
+      <Project>{4e7207c8-4e3e-4302-a87e-3f266fcf7450}</Project>
+      <Name>Blog.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
