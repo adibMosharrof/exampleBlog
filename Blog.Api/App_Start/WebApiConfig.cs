@@ -7,6 +7,8 @@ using System.Web.OData.Extensions;
 
 namespace Blog.Api
 {
+    using System.Web.Http.Cors;
+
     using Blog.Models;
 
     public static class WebApiConfig
@@ -16,6 +18,8 @@ namespace Blog.Api
             // Web API configuration and services
 
             // Web API routes
+            var cors = new EnableCorsAttribute("http://localhost:51284", "*", "*");
+            config.EnableCors(cors);
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
@@ -30,6 +34,7 @@ namespace Blog.Api
                 routeName: "ODataRoute",
                 routePrefix: null,
                 model: builder.GetEdmModel());
+
         }
     }
 }
