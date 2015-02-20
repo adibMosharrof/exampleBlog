@@ -10,6 +10,7 @@ using System.Data.Entity;
 
 namespace Blog.Api.Controllers
 {
+    [EnableQuery]
     public class PostsController : ODataController
     {
         PostsRepository postsRepository = new PostsRepository();
@@ -18,13 +19,11 @@ namespace Blog.Api.Controllers
             return postsRepository.PostExists(key);
         }
 
-        [EnableQuery]
         public IQueryable<Post> Get()
         {
             return postsRepository.Get();
         }
 
-        [EnableQuery]
         public SingleResult<Post> Get([FromODataUri] int key)
         {
             IQueryable<Post> result = postsRepository.Get(key);
