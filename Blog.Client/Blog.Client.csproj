@@ -20,12 +20,14 @@
     <Content Include="app.css" />
     <Content Include="app\app.js" />
     <Content Include="app\controllers\PostCtrl.js" />
+    <Content Include="app\services\entityManagerFactory.js" />
     <Content Include="app\services\PostService.js" />
     <Content Include="app\views\home.html" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\breeze.directives.css" />
     <Content Include="index.html" />
     <Content Include="scripts\angular-mocks.js" />
     <Content Include="scripts\angular-ui-router.js" />
@@ -47,9 +49,17 @@
     <None Include="scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
+    <Content Include="scripts\breeze.bridge.angular.js" />
+    <Content Include="scripts\breeze.debug.js" />
+    <Content Include="scripts\breeze.directives.js" />
+    <Content Include="scripts\breeze.min.js" />
+    <Content Include="scripts\datajs-1.1.3.js" />
+    <Content Include="scripts\datajs-1.1.3.min.js" />
     <Content Include="scripts\jquery-1.9.1.js" />
     <Content Include="scripts\jquery-1.9.1.min.js" />
     <Content Include="scripts\npm.js" />
+    <Content Include="scripts\q.js" />
+    <Content Include="scripts\q.min.js" />
     <Content Include="web.config" />
     <Content Include="scripts\jquery-1.9.1.min.map" />
   </ItemGroup>
