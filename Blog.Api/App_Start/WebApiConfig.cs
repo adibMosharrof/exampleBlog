@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
-using System.Web.OData.Builder;
-using System.Web.OData.Extensions;
+using System.Web.Http.OData.Builder;
 
 namespace Blog.Api
 {
@@ -18,7 +17,7 @@ namespace Blog.Api
             // Web API configuration and services
 
             // Web API routes
-            var cors = new EnableCorsAttribute("http://localhost:51284", "*", "*");
+            var cors = new EnableCorsAttribute("*", "*", "*", "DataServiceVersion, MaxDataServiceVersion");
             config.EnableCors(cors);
             config.MapHttpAttributeRoutes();
 
@@ -30,7 +29,7 @@ namespace Blog.Api
 
             var builder = new ODataConventionModelBuilder();
             builder.EntitySet<Post>("Posts");
-            config.MapODataServiceRoute(
+            config.Routes.MapODataRoute(
                 routeName: "ODataRoute",
                 routePrefix: null,
                 model: builder.GetEdmModel());

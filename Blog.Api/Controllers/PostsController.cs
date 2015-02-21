@@ -4,14 +4,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
-using System.Web.OData;
 using System.Threading.Tasks;
 using System.Data.Entity;
+using System.Net.Http;
+using System.Web.Http.OData;
 
 namespace Blog.Api.Controllers
 {
     [EnableQuery]
-    public class PostsController : ODataController
+    public class PostsController : EntitySetController<Post, int>
     {
         PostsRepository postsRepository = new PostsRepository();
         private bool PostExists(int key)
@@ -19,25 +20,19 @@ namespace Blog.Api.Controllers
             return postsRepository.PostExists(key);
         }
 
-        public IQueryable<Post> Get()
+        public override IQueryable<Post> Get()
         {
             return postsRepository.Get();
         }
 
-        public SingleResult<Post> Get([FromODataUri] int key)
-        {
-            IQueryable<Post> result = postsRepository.Get(key);
-            return SingleResult.Create(result);
-        }
-
-        public IHttpActionResult Post(Post post)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            postsRepository.Post(post);
-            return Created(post);
-        }
+        //public IHttpActionResult Post(Post post)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
+        //    postsRepository.Post(post);
+        //    return Created(post);
+        //}
 	}
 }
