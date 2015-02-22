@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.3.3.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.dll</HintPath>
@@ -49,12 +52,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BlogContext.cs" />
-    <Compile Include="Migrations\201502191059180_PostCreated.cs" />
-    <Compile Include="Migrations\201502191059180_PostCreated.Designer.cs">
-      <DependentUpon>201502191059180_PostCreated.cs</DependentUpon>
+    <Compile Include="Entities\Comment.cs" />
+    <Compile Include="Migrations\201502211150001_CommentsEntityCreated.cs" />
+    <Compile Include="Migrations\201502211150001_CommentsEntityCreated.Designer.cs">
+      <DependentUpon>201502211150001_CommentsEntityCreated.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Entities\Post.cs" />
+    <Compile Include="Repositories\CommentsRepository.cs" />
     <Compile Include="Repositories\PostsRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -63,8 +68,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201502191059180_PostCreated.resx">
-      <DependentUpon>201502191059180_PostCreated.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201502211150001_CommentsEntityCreated.resx">
+      <DependentUpon>201502211150001_CommentsEntityCreated.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

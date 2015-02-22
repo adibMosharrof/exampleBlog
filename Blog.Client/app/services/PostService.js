@@ -32,7 +32,8 @@
 
             breeze.config.initializeAdapterInstance('dataService', 'webApiOData', true);
             var manager = new breeze.EntityManager({ dataService :dataService});
-            var query = breeze.EntityQuery.from("Posts");
+            var query = breeze.EntityQuery.from("Posts").take(5).expand("comments");
+            //var query = breeze.EntityQuery.from("Posts").take(5);
             var promise = manager.executeQuery(query).catch(queryFailed);
             return promise;
     }
