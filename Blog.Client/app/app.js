@@ -1,7 +1,7 @@
 // Create the module and define its dependencies.
 var app = angular.module('blog', [
     'ui.router',
-    'restangular'
+    'breeze.angular'
 ]);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
@@ -17,5 +17,5 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 
 // Execute bootstrapping code and any dependencies.
 app.run([
-    '$q', '$rootScope', function ($q, $rootScope) {
+    '$q', '$rootScope', 'breeze',function ($q, $rootScope, breeze) {
     }]);

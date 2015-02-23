@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
-namespace Blog.Models
+namespace Blog.Models.Entities
 {
-    using System.ComponentModel.DataAnnotations;
-
     public class Post
     {
         public int Id { get; set; }
@@ -17,5 +13,7 @@ namespace Blog.Models
         public String Content { get; set; }
 
         public int Status { get; set; }
+
+        public virtual ICollection<Comment> Comments { get; set; } 
     }
 }

@@ -18,9 +18,13 @@
         function getPosts() {
             var postRequest = PostService.getPosts();
             //var postRequest = _this.$http.get('http://localhost:5326/Posts');
-            postRequest.success(function(data) {
-                debugger;
+            //postRequest.success(function(data) {
+            //    debugger;
 
+            //});
+
+            postRequest.then(function(data) {
+                alert('breeze success');
             });
         }
 
