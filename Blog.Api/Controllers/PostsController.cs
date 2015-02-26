@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using System.Data.Entity;
 using System.Net.Http;
 using System.Web.Http.OData;
-using Blog.Models.DTO;
 using Blog.Models.Entities;
 using Blog.Models.Repositories;
 

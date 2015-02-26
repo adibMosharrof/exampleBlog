@@ -1,6 +1,5 @@
 ﻿using System.Data.Entity;
 using System.Linq;
-using Blog.Models.DTO;
 using Blog.Models.Entities;
 
 namespace Blog.Models.Repositories
@@ -37,16 +36,9 @@ namespace Blog.Models.Repositories
             return db.Posts.Any(p => p.Id == key);
         }
 
-        public IQueryable<PostDto> Get(int key)
+        public IQueryable<Post> Get(int key)
         {
-            var post = db.Posts.Include(p=>p.Comments).Select(p=> new PostDto()
-            {
-               Content = p.Content,
-               Status = p.Status,
-               Title = p.Title
-               //Comments = p.Comments
-            });
-            return post;
+            return db.Posts;
         }
 
         public int Post (Post post)

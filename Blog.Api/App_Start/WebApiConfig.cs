@@ -5,7 +5,6 @@ using System.Web.Http;
 using System.Web.Http.OData.Batch;
 using System.Web.Http.OData.Builder;
 using Blog.Models;
-using Blog.Models.DTO;
 using Blog.Models.Entities;
 using Microsoft.Data.Edm;
 
