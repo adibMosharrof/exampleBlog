@@ -23,7 +23,7 @@ namespace Blog.Api.Configurations
             config.Routes.MapODataRoute(
                 routeName: "ODataRoute",
                 routePrefix: null,
-                //batchHandler: new DefaultODataBatchHandler(GlobalConfiguration.DefaultServer),
+                batchHandler: new DefaultODataBatchHandler(GlobalConfiguration.DefaultServer),
                 model: EdmBuilder.GetEdm<MyDbContextForEdm>()
                 //model: builder.GetEdmModel() 
                 );
