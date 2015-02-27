@@ -1,26 +1,47 @@
 ﻿<div class="post-create-container">
-    <form class="form-horizontal" role="form" ng-submit="saveData()">
-        <div class="form-group">
+    <form class="form-horizontal" role="form" ng-submit="saveData(post_create.$valid)" name="post_create" novalidate>
+        <div class="form-group" ng-class="{ 'has-error' : post_create.title.$invalid && !post_create.title.$pristine}">
             <label class="col-sm-2 control-label">Title </label>
             <div class="col-sm-4">
-                <input class="form-control" type="text" ng-model="post.title" />
+                <input class="form-control" type="text" ng-model="post.title" name="title" required />
+            </div>
+            <div class="error"
+                 ng-show="post_create.title.$invalid && !post_create.title.$pristine">
+                <small class="error"
+                       ng-show="post_create.title.$error.required">
+                    Title is required.
+                </small>
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group"ng-class="{ 'has-error' : post_create.status.$invalid && !post_create.status.$pristine}">
             <label class="col-sm-2 control-label">Status </label>
             <div class="col-sm-4">
-                <input class="form-control" type="text" ng-model="post.status" />
+                <input class="form-control" name="status" type="text" ng-model="post.status" required />
+            </div>
+            <div class="error"
+                 ng-show="post_create.status.$invalid && !post_create.status.$pristine">
+                <small class="error"
+                       ng-show="post_create.status.$error.required">
+                    Status is required.
+                </small>
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group" ng-class="{ 'has-error' : post_create.content.$invalid && !post_create.content.$pristine}">
             <label class="col-sm-2 control-label">Content </label>
             <div class="col-sm-4">
-                <textarea class="form-control" type="text" ng-model="post.content"></textarea>
+                <textarea name="content" class="form-control" type="text" ng-model="post.content" required></textarea>
+            </div>
+            <div class="error"
+                 ng-show="post_create.content.$invalid && !post_create.content.$pristine">
+                <small class="error"
+                       ng-show="post_create.content.$error.required">
+                    Content is required.
+                </small>
             </div>
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-success">Create</button>
+                <button type="submit" class="btn btn-success" ng-disabled="post_create.$invalid">Create</button>
             </div>
         </div>
     </form>
