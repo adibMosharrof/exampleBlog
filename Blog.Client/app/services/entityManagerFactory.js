@@ -7,6 +7,7 @@
     function emFactory(breeze) {
         configureBreeze();
         var serviceName = "http://localhost/BlogApi";
+        //var serviceName = "http://localhost:5326/";
         var factory = {
             newManager: newManager,
             serviceName: serviceName
