@@ -1,26 +1,28 @@
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
+using System.Web.Http.OData;
 using Blog.Models.Entities;
 
 namespace Blog.Models.Repositories
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     {
-        private readonly DbContext _db;
+        private readonly DbContext _context;
         public GenericRepository()
         {
-            _db = new BlogContext();
+            _context = new BlogContext();
         }
 
         public GenericRepository(DbContext context)
         {
-            _db = context;
+            this._context = context;
         }
         protected DbSet<T> DbSet
         {
             get
             {
-                return _db.Set<T>();
+                return _context.Set<T>();
             }
         }
         public virtual IQueryable<T> Get()
