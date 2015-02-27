@@ -25,7 +25,7 @@ namespace Blog.Models.Repositories
                 return _context.Set<T>();
             }
         }
-        public virtual IQueryable<T> Get()
+        public virtual IQueryable<T> All()
         {
             return DbSet.AsQueryable();
         }

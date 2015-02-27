@@ -18,11 +18,10 @@ namespace Blog.Api.Controllers
 			return _postsRepository.Exists(key);
 		}
 
-		public override IQueryable<Post> Get()
-		{
-			return _postsRepository.Get();
-		}
-
+        public override IQueryable<Post> Get()
+        {
+            return _postsRepository.All();
+        }
 
 	    protected override Post GetEntityByKey(int key)
 	    {
