@@ -23,7 +23,7 @@
     <Content Include="app\services\entityManagerFactory.js" />
     <Content Include="app\services\errorLogger.js" />
     <Content Include="app\services\PostService.js" />
-    <Content Include="app\views\home.html" />
+    <Content Include="app\views\posts\home.html" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -54,6 +54,10 @@
     <Content Include="scripts\angular.js" />
     <Content Include="scripts\angular.min.js" />
     <Content Include="scripts\angular.min.js.map" />
+    <Content Include="Content\custom\grid.less" />
+    <Content Include="Content\custom\grid.css.map">
+      <DependentUpon>grid.css</DependentUpon>
+    </Content>
     <None Include="scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />

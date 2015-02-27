@@ -1,7 +1,8 @@
 // Create the module and define its dependencies.
 var app = angular.module('blog', [
     'ui.router',
-    'breeze.angular'
+    'breeze.angular',
+    'ngGrid'
 ]);
 
 app.config(function ($stateProvider, $urlRouterProvider) {

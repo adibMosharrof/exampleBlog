@@ -5,29 +5,78 @@
         .module('blog')
         .controller('PostCtrl', PostCtrl);
 
-    PostCtrl.$inject = ['$location', 'PostService']; 
+    PostCtrl.$inject = ['$scope', '$location', 'PostService', 'errorLogger'];
 
-    function PostCtrl($location, PostService) {
-        /* jshint validthis:true */
-        var vm = this;
-        //var _this = this;
-        vm.title = 'PostCtrl';
-        getPosts();
-        activate();
+    function PostCtrl($scope, $location, PostService, errorLogger) {
+        $scope.title = 'PostCtrl';
+        $scope.formInfo = {};
+        init();
+        //getPosts();
 
         function getPosts() {
             var postRequest = PostService.getPosts();
-            //var postRequest = _this.$http.get('http://localhost:5326/Posts');
-            //postRequest.success(function(data) {
-            //    debugger;
 
-            //});
 
-            postRequest.then(function(data) {
-                alert('breeze success');
+            postRequest.then(function (data) {
+                $scope.posts = data.results;
             });
         }
 
-        function activate() { }
+        function init() {
+            configureNgGrid();
+            $scope.saveData = saveData;
+        }
+
+        function saveData() {
+
+        }
+
+        function configureNgGrid() {
+            $scope.filterOptions = {
+                filterText: "",
+                useExternalFilter: false
+            };
+            $scope.totalServerItems = 0;
+            $scope.pagingOptions = {
+                pageSizes: [10, 20, 50, 100, 250, 500, 1000],
+                pageSize: 20,
+                currentPage: 1
+            };
+
+
+            $scope.$watch('pagingOptions', function (newVal, oldVal) {
+                if (newVal.currentPage !== oldVal.currentPage || newVal.pageSize !== oldVal.pageSize) {
+                    getPagedData();
+                }
+            }, true);
+            $scope.$watch('filterOptions', function (newVal, oldVal) {
+                if (newVal !== oldVal) {
+                    getPagedData();
+                }
+            }, true);
+
+            $scope.gridOptions = {
+                data: 'posts',
+                enablePaging: true,
+                showFooter: true,
+                showFilter: true,
+                totalServerItems: 'totalServerItems',
+                pagingOptions: $scope.pagingOptions,
+                filterOptions: $scope.filterOptions,
+                columnDefs: [
+                { field: 'id', displayName: "ID" }, { field: 'title', displayName: 'Title' }, { field: 'status', displayName: 'Status' }]
+            };
+            getPagedData();
+        }
+
+        function getPagedData() {
+            var pageSize = $scope.pagingOptions.pageSize;
+            var page = $scope.pagingOptions.currentPage;
+            var promise = PostService.getPostsForGrid(pageSize, page, $scope.filterOptions.filterText);
+            promise.then(function (data) {
+                $scope.posts = data.results;
+                $scope.totalServerItems = data.inlineCount;
+            }, errorLogger.logError);
+        }
     }
 })();

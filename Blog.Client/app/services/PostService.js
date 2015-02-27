@@ -11,6 +11,7 @@
         var service = {
             getData: getData,
             getPosts: getPosts,
+            getPostsForGrid: getPostsForGrid,
             getPostsWithComments: getPostsWithComments
         };
         var manager = emFactory.newManager(); 
@@ -24,8 +25,12 @@
             return promise;
         }
 
+        function getPostsForGrid(pageSize, page, searchText) {
+//(page - 1) * pageSize, page * pageSize
+            var query = breeze.EntityQuery.from("Posts").skip((page - 1) * pageSize).take(pageSize).inlineCount();
+            var promise = manager.executeQuery(query).catch(errorLogger.logError);
             return promise;
-    }
+        }
 
         function getPostsWithComments() {
             var query = breeze.EntityQuery.from("Posts").take(5).expand("comments");
