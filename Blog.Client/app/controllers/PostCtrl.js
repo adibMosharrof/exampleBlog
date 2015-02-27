@@ -24,11 +24,16 @@
 
         function init() {
             configureNgGrid();
-            $scope.saveData = saveData;
+            $scope.create = create;
         }
 
-        function saveData() {
 
+        function create(isValid) {
+            if (isValid) {
+                var newPost = PostService.create($scope.newPost);
+                $scope.posts.unshift(newPost);
+                $scope.newPost = '';
+            }
         }
 
         function configureNgGrid() {
