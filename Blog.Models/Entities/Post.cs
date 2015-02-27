@@ -4,9 +4,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Blog.Models.Entities
 {
-    public class Post
+    public class Post : BaseEntity
     {
-        public int Id { get; set; }
 
         [Required]
         public String Title { get; set; }
