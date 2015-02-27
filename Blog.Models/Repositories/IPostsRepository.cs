@@ -9,5 +9,6 @@ namespace Blog.Models.Repositories
 {
     public interface IPostsRepository : IGenericRepository<Post>
     {
+        IQueryable<Comment> GetComments(int key);
     }
 }

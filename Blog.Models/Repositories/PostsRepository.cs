@@ -14,10 +14,9 @@ namespace Blog.Models.Repositories
             _db = blogContext;
         }
 
-        public int Post (Post post)
+        public IQueryable<Comment> GetComments(int key)
         {
-            _db.Posts.Add(post);
-            return _db.SaveChanges();
+            return _db.Comments.Where(p => p.PostId == key);
         }
     }
 }
