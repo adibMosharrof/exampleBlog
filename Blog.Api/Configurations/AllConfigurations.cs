@@ -1,5 +1,6 @@
 using System.Web.Http;
 using System.Web.Http.Cors;
+using System.Web.Http.OData.Batch;
 using Blog.Models.Entities;
 using Blog.Models.Repositories;
 using Microsoft.Data.Edm;
@@ -18,6 +19,7 @@ namespace Blog.Api.Configurations
 
         public static void ConfigureRoutes(HttpConfiguration config)
         {
+            config.MapHttpAttributeRoutes();
             config.Routes.MapODataRoute(
                 routeName: "ODataRoute",
                 routePrefix: null,
@@ -25,7 +27,6 @@ namespace Blog.Api.Configurations
                 model: EdmBuilder.GetEdm<MyDbContextForEdm>()
                 //model: builder.GetEdmModel() 
                 );
-            config.MapHttpAttributeRoutes();
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
