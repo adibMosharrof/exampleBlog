@@ -29,8 +29,15 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\breeze.directives.css" />
+    <Content Include="Content\custom\grid.css">
+      <DependentUpon>grid.less</DependentUpon>
+    </Content>
+    <Content Include="Content\custom\grid.min.css">
+      <DependentUpon>grid.css</DependentUpon>
+    </Content>
+    <Content Include="Content\ng-grid.css" />
+    <Content Include="Content\ng-grid.min.css" />
     <Content Include="index.html" />
-    <Content Include="scripts\angular-mocks.js" />
     <Content Include="scripts\angular-ui-router.js" />
     <Content Include="scripts\angular-ui-router.min.js" />
     <Content Include="scripts\angular-ui\ui-bootstrap-tpls.js" />
@@ -58,6 +65,8 @@
     <Content Include="scripts\datajs-1.1.3.min.js" />
     <Content Include="scripts\jquery-1.9.1.js" />
     <Content Include="scripts\jquery-1.9.1.min.js" />
+    <Content Include="scripts\ng-grid.js" />
+    <Content Include="scripts\ng-grid.min.js" />
     <Content Include="scripts\npm.js" />
     <Content Include="scripts\q.js" />
     <Content Include="scripts\q.min.js" />
