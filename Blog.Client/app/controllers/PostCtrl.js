@@ -11,22 +11,23 @@
         $scope.title = 'PostCtrl';
         $scope.formInfo = {};
         init();
-        //getPosts();
-
-        function getPosts() {
-            var postRequest = PostService.getPosts();
 
 
-            postRequest.then(function (data) {
-                $scope.posts = data.results;
-            });
-        }
 
         function init() {
+            getPost();
             configureNgGrid();
             $scope.create = create;
         }
 
+        function getPost() {
+            var postRequest = PostService.getPostWithComments();
+
+            postRequest.then(function (data) {
+                $scope.posts = data.results;
+                //var comment = data.re
+            });
+        }
 
         function create(isValid) {
             if (isValid) {

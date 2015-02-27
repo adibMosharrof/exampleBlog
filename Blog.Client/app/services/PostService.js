@@ -5,16 +5,18 @@
         .module('blog')
         .factory('PostService', PostService);
 
-    PostService.$inject = ['breeze', '$q', 'errorLogger', 'entityManagerFactory'];
+    PostService.$inject = ['breeze', '$q', 'errorLogger', 'entityManagerFactory', 'breezeSaveChangesFactory'];
 
-    function PostService(breeze, $q, errorLogger, emFactory) {
+    function PostService(breeze, $q, errorLogger, emFactory, breezeSaveChangesFactory) {
+        var saveChangesFactory = breezeSaveChangesFactory;
         var service = {
             getData: getData,
             getPosts: getPosts,
             getPostsForGrid: getPostsForGrid,
-            getPostsWithComments: getPostsWithComments
+            getPostWithComments: getPostWithComments,
+            create: create
         };
-        var manager = emFactory.newManager(); 
+        var manager = emFactory.newManager();
         return service;
 
         function getData() { }
@@ -26,16 +28,22 @@
         }
 
         function getPostsForGrid(pageSize, page, searchText) {
-//(page - 1) * pageSize, page * pageSize
             var query = breeze.EntityQuery.from("Posts").skip((page - 1) * pageSize).take(pageSize).inlineCount();
             var promise = manager.executeQuery(query).catch(errorLogger.logError);
             return promise;
         }
 
-        function getPostsWithComments() {
-            var query = breeze.EntityQuery.from("Posts").take(5).expand("comments");
+        function getPostWithComments(postId) {
+            var query = breeze.EntityQuery.from("Posts").where('id', 'eq', 3).expand("comments");
             var promise = manager.executeQuery(query).catch(errorLogger.logError);
             return promise;
         }
-}
+
+        function create(post) {
+            var newPost = manager.createEntity('Post', post);
+            debugger;
+            saveChangesFactory.saveChanges(manager);
+            return newPost;
+        }
+    }
 })();
