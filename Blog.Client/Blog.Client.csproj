@@ -23,6 +23,7 @@
     <Content Include="app\services\entityManagerFactory.js" />
     <Content Include="app\services\errorLogger.js" />
     <Content Include="app\services\PostService.js" />
+    <Content Include="app\views\posts\create.html" />
     <Content Include="app\views\posts\home.html" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
