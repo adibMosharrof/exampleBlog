@@ -10,9 +10,9 @@
     function PostService(breeze, $q, errorLogger, emFactory) {
         var service = {
             getData: getData,
-            getPosts: getPosts
+            getPosts: getPosts,
+            getPostsWithComments: getPostsWithComments
         };
-
         var manager = emFactory.newManager(); 
         return service;
 
@@ -27,10 +27,10 @@
             return promise;
     }
 
-    function queryFailed(error) {
-        //logger.error(error.message, "Query failed");
-        alert('query failed');
-        return $q.reject(error); // so downstream promise users know it failed
-    }
+        function getPostsWithComments() {
+            var query = breeze.EntityQuery.from("Posts").take(5).expand("comments");
+            var promise = manager.executeQuery(query).catch(errorLogger.logError);
+            return promise;
+        }
 }
 })();
