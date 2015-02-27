@@ -3,11 +3,18 @@ using System.Web.Http.Cors;
 using Blog.Models.Entities;
 using Blog.Models.Repositories;
 using Microsoft.Data.Edm;
+using Microsoft.Practices.Unity;
 
 namespace Blog.Api.Configurations
 {
     public static class AllConfigurations
     {
+        public static void ConfigureDependencyInjection(HttpConfiguration config)
+        {
+            var container = new UnityContainer();
+            container.RegisterType<IPostsRepository, PostsRepository>(new HierarchicalLifetimeManager());
+            config.DependencyResolver = new UnityResolver(container);
+        }
 
         public static void ConfigureRoutes(HttpConfiguration config)
         {
