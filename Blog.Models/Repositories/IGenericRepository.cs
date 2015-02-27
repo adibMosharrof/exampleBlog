@@ -9,5 +9,7 @@ namespace Blog.Models.Repositories
         IQueryable<T> All();
         bool Exists(int key);
         T Get(int key);
+        void Create(T entity);
+        T Patch(int key, Delta<T> patch);
     }
 }

@@ -40,9 +40,32 @@ namespace Blog.Models.Repositories
             return DbSet.Find(key);
         }
 
-        //public virtual int Post(T entity)
-        //{
+        public virtual void Create(T entity)
+        {
+            DbSet.Add(entity);
+            _context.SaveChanges();
+        }
 
-        //}
+        public virtual T Patch(int key, Delta<T> patch)
+        {
+            var entity = DbSet.Find(key);
+            if (entity == null)
+            {
+                return null;
+            }
+            patch.Patch(entity);
+            try
+            {
+                _context.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!Exists(key))
+                    return null;
+                throw;
+            }
+            return entity;
+        }
+
     }
 }
