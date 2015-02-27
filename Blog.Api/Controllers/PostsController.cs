@@ -1,4 +1,7 @@
 ﻿using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Web.Http;
 using System.Web.Http.OData;
 using Blog.Models.Entities;
 using Blog.Models.Repositories;
@@ -24,8 +27,29 @@ namespace Blog.Api.Controllers
         }
 
 	    protected override Post GetEntityByKey(int key)
+        {
+            var post = _postsRepository.Get(key);
+            return post;
+        }
+
+          [AcceptVerbs("PATCH", "MERGE")]
+	    public override HttpResponseMessage Patch(int key, Delta<Post> patch)
 	    {
-	        return _postsRepository.Get(key);
+	        var post = _postsRepository.Patch(key, patch);
+	        if (post == null)
+	            return Request.CreateResponse(HttpStatusCode.NotFound);
+	        return Request.CreateResponse(Updated(post));
 	    }
+
+	    public override HttpResponseMessage Post(Post entity)
+	    {
+	        _postsRepository.Create(entity);
+	        return Request.CreateResponse(HttpStatusCode.OK);
+	    }
+
+	    public IQueryable<Comment> GetComments(int key)
+	    {
+	        return _postsRepository.GetComments(key);
+	    } 
 	}
 }
