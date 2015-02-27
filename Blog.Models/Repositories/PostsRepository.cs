@@ -4,47 +4,20 @@ using Blog.Models.Entities;
 
 namespace Blog.Models.Repositories
 {
-    public class PostsRepository
+    public class PostsRepository : GenericRepository<Post>,IPostsRepository
     {
 
-        BlogContext db = new BlogContext();
-        //public IQueryable<AllPostsDTO> Get()
-        //{
-        //    var posts= db.Posts.Select(p=> new AllPostsDTO()
-        //    {
-        //       Content = p.Content,
-        //       Status = p.Status,
-        //       Title = p.Title
-        //    });
-        //    return posts;
-        //}
-        //public IQueryable<PostDto> Get()
-        public IQueryable<Post> Get()
-        {
-            var posts = db.Posts;
-            return posts;
-            //var postsDto = new List<PostDto>();
-            //foreach (var post in posts)
-            //{
-            //   postsDto.Add( Mapper.Map<Post, PostDto>(post)); 
-            //}
-            //var output = postsDto.AsQueryable();
-            //return output;
-        } 
-        public bool PostExists(int key)
-        {
-            return db.Posts.Any(p => p.Id == key);
-        }
+        private readonly BlogContext _db;
 
-        public IQueryable<Post> Get(int key)
+        public PostsRepository(BlogContext blogContext)
         {
-            return db.Posts;
+            _db = blogContext;
         }
 
         public int Post (Post post)
         {
-            db.Posts.Add(post);
-            return db.SaveChanges();
+            _db.Posts.Add(post);
+            return _db.SaveChanges();
         }
     }
 }

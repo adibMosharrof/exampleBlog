@@ -65,6 +65,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Entities\Post.cs" />
     <Compile Include="Repositories\IGenericRepository.cs" />
+    <Compile Include="Repositories\IPostsRepository.cs" />
     <Compile Include="Repositories\CommentsRepository.cs" />
     <Compile Include="Repositories\GenericRepository.cs" />
     <Compile Include="Repositories\PostsRepository.cs" />
